@@ -19,6 +19,18 @@ public class HomePage {
     @FindBy(xpath = "//button[contains(@class,'openBooking')]")
     private WebElement bookButton;
 
+    @FindBy(name = "firstname")
+    private WebElement formFirstNameText;
+
+    @FindBy(name = "lastname")
+    private WebElement formLastNameText;
+
+    @FindBy(name = "email")
+    private WebElement formEmailText;
+
+    @FindBy(name = "phone")
+    private WebElement formPhoneText;
+
     public HomePage() {
         PageFactory.initElements(getDriver(), this);
     }
@@ -38,6 +50,17 @@ public class HomePage {
 
     public void navigateToHomePage() {
         getDriver().get("https://automationintesting.online/#/");
+    }
+
+    public void clickBookThisRoom() {
+        bookButton.click();
+    }
+
+    public void assertFormControlsAreDisplayed() {
+        Assert.assertTrue("First name text in form is displayed", formFirstNameText.isDisplayed());
+        Assert.assertTrue("Last name text in form is displayed", formLastNameText.isDisplayed());
+        Assert.assertTrue("Email text in form is displayed", formEmailText.isDisplayed());
+        Assert.assertTrue("Phone text in form is displayed", formPhoneText.isDisplayed());
     }
 }
 
