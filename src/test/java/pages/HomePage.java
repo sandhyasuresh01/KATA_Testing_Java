@@ -6,9 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,6 +20,9 @@ public class HomePage {
 
     @FindBy(tagName = "h2")
     private WebElement roomCategoryIdentifier;
+
+    @FindBy(tagName = "h3")
+    private WebElement confirmationBookingTitle;
 
     @FindBy(xpath = "//button[contains(@class,'openBooking')]")
     private WebElement bookButton;
@@ -109,30 +109,24 @@ public class HomePage {
     public void findDateElement()  {
         bookingMonth = getDriver().findElement(By.className("rbc-toolbar-label")).getText();
         List<WebElement> activeElements = getDriver().findElements(By.xpath("//div[@class='rbc-date-cell']"));
-//        if(!getDriver().findElements(By.xpath("//div[@class='rbc-event-content']")).isEmpty()) {
-//            checkToSelectDates(activeElements);
-//        } else {
-        selectDatesForBooking(activeElements, 0, activeElements.size());
-        // }
+        selectDatesForBooking(activeElements);
     }
 
-    public static void assertMessageAfterBooked() {
+    public void assertBookingConfirmation() {
         try {
-            //Thread.sleep(100);
             String alertMessage=getDriver().findElement(By.xpath("//div[@role='dialog']")).getText();
             String dateString = bookingMonth + " " + bookingFromDate;
             Date formatDate = new SimpleDateFormat("MMMM yyyy, d", Locale.ENGLISH).parse(dateString);
             SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd");
             String inputDate = String.valueOf(formatter1.parse(String.valueOf(formatDate)));
+            Assert.assertEquals("Booking Successful!", confirmationBookingTitle.getText());
             Assert.assertTrue(alertMessage.contains(inputDate));
-            Assert.assertEquals("Rooms", bookingMonth);
         } catch (ParseException e) {
             e.printStackTrace();
         }
     }
 
-    private static void selectDatesForBooking(List<WebElement> activeElements, int bookedIntDate, int size) {
-        //for (int i = bookedIntDate; i < size; i++) {
+    private static void selectDatesForBooking(List<WebElement> activeElements) {
         WebElement currentRow = activeElements.get(0);
         Actions builder = new Actions(getDriver());
         bookingFromDate = currentRow.getText();
@@ -140,8 +134,7 @@ public class HomePage {
         WebElement to = activeElements.get(2).findElement(By.cssSelector("button[class='rbc-button-link']"));
         builder.clickAndHold(from).build().perform();
         builder.dragAndDrop(currentRow, to).build().perform();
-        // break;
-        //}
+
     }
 
     // Advanced function - not validated for now

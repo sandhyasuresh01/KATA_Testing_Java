@@ -26,6 +26,6 @@ public class BookingRoomSteps extends BasePage {
 
     @Then("I get the confirmation message")
     public void i_have_the_option_to_validate_form_controls() {
-        homePage.assertMessageAfterBooked();
+        homePage.assertBookingConfirmation();
     }
 }
