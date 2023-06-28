@@ -1,12 +1,9 @@
 package pages;
 
 import org.junit.Assert;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import utils.*;
-
 import static utils.CommonUtils.*;
 import static utils.DriversUtils.*;
 
@@ -45,7 +42,7 @@ public class HomePage {
     }
 
     public void assertBookButtonDisplayed(){
-        Assert.assertEquals(true, bookButton.isDisplayed());
+        Assert.assertTrue(bookButton.isDisplayed());
     }
 
     public void navigateToHomePage() {
