@@ -3,7 +3,7 @@
     "line": 1,
     "elements": [
       {
-        "start_timestamp": "2021-01-05T10:46:40.530Z",
+        "start_timestamp": "2023-06-28T19:30:37.737Z",
         "line": 4,
         "name": "Option to book a room is available on the page",
         "description": "",
@@ -13,7 +13,7 @@
         "steps": [
           {
             "result": {
-              "duration": 9880000000,
+              "duration": 6937000000,
               "status": "passed"
             },
             "line": 5,
@@ -25,7 +25,7 @@
           },
           {
             "result": {
-              "duration": 56000000,
+              "duration": 58000000,
               "status": "passed"
             },
             "line": 6,
@@ -37,7 +37,7 @@
           },
           {
             "result": {
-              "duration": 104000000,
+              "duration": 185000000,
               "status": "passed"
             },
             "line": 7,

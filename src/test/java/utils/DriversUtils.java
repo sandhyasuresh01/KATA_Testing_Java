@@ -1,6 +1,7 @@
 package utils;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.concurrent.TimeUnit;
@@ -9,9 +10,9 @@ public class DriversUtils {
     static WebDriver driver;
 
     public static void initDriver() {
-        //System.setProperty("webdriver.chrome.driver", "Drivers/chromedriver.exe");
-        //driver = new ChromeDriver();
-        driver = new FirefoxDriver();
+        String path = System.getProperty("user.dir");
+        System.setProperty("webdriver.chrome.driver", path + "/driver/chromedriver");
+        driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
     }
