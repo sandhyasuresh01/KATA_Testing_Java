@@ -62,5 +62,19 @@ public class HomePage {
         Assert.assertTrue("Email text in form is displayed", formEmailText.isDisplayed());
         Assert.assertTrue("Phone text in form is displayed", formPhoneText.isDisplayed());
     }
+
+    public void enterTextInAllFormControls() {
+        formFirstNameText.sendKeys("TestUser firstName");
+        formLastNameText.sendKeys("TestUser lastName");
+        formPhoneText.sendKeys("+32123456789");
+        formEmailText.sendKeys("test@test.com");
+    }
+
+    public void assertFormControls() {
+        Assert.assertEquals("TestUser firstName", formFirstNameText.getAttribute("value"));
+        Assert.assertEquals("TestUser lastName", formLastNameText.getAttribute("value"));
+        Assert.assertEquals("+32123456789", formPhoneText.getAttribute("value"));
+        Assert.assertEquals("test@test.com", formEmailText.getAttribute("value"));
+    }
 }
 
