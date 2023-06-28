@@ -20,3 +20,8 @@ Then I have the option to book a room
     Given I am on the room booking form
     When I enter all text in all the form controls
     Then I validate the text in all form fields
+
+  Scenario: Validate the confirmation message on booking confirm
+    Given I am on the room booking calendar form
+    When I select the dates and book the room
+    Then I get the confirmation message
