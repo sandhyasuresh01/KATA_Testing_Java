@@ -1,9 +1,11 @@
 package pages;
 
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
 import static utils.CommonUtils.*;
 import static utils.DriversUtils.*;
 
@@ -15,6 +17,9 @@ public class HomePage {
 
     @FindBy(xpath = "//button[contains(@class,'openBooking')]")
     private WebElement bookButton;
+
+    @FindBy(xpath = "//button[contains(@class,'btn-outline-primary')]")
+    private WebElement bookRoom;
 
     @FindBy(name = "firstname")
     private WebElement formFirstNameText;
@@ -53,11 +58,25 @@ public class HomePage {
         bookButton.click();
     }
 
+    public void clickBookRoom() {
+        bookRoom.click();
+    }
     public void assertFormControlsAreDisplayed() {
         Assert.assertTrue("First name text in form is displayed", formFirstNameText.isDisplayed());
         Assert.assertTrue("Last name text in form is displayed", formLastNameText.isDisplayed());
         Assert.assertTrue("Email text in form is displayed", formEmailText.isDisplayed());
         Assert.assertTrue("Phone text in form is displayed", formPhoneText.isDisplayed());
+    }
+
+    public void enterTextExceptInEmailControl() {
+        formFirstNameText.sendKeys("TestUser firstName");
+        formLastNameText.sendKeys("TestUser lastName");
+        formPhoneText.sendKeys("+32123456789");
+    }
+
+    public void assertError() {
+        WebElement alert = getDriver().findElement(By.className("alert-danger"));
+        Assert.assertTrue(alert.isDisplayed());
     }
 
     public void enterTextInAllFormControls() {

@@ -11,6 +11,11 @@ Then I have the option to book a room
     When I select book this room option
     Then I have the option to see form controls to fill up necessary information
 
+  Scenario: Display the error alert
+    Given I enter valid text in firstName lastName except email control
+    When I select book room
+    Then I show error
+
   Scenario: Fill up the necessary information required
     Given I am on the room booking form
     When I enter all text in all the form controls
